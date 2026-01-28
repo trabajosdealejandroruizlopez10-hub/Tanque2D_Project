@@ -1,58 +1,73 @@
-using UnityEngine;
-using UnityEngine.InputSystem;
+﻿using UnityEngine;
 
 public class CannonController : MonoBehaviour
 {
-    [Header("References")]
-    public Transform cannonTransform; // el ca��n
-    public GameObject bulletPrefab;
-    public Transform firePoint; // desde donde sale la bala
-
-    [Header("Settings")]
+    [Header("Disparo")]
+    public Transform firePoint;       // Punta del cañón
+    public GameObject bulletPrefab;   // Prefab de la bala
     public float bulletSpeed = 15f;
 
-    private Vector3 mousePosition;
+    [Header("Rotación")]
+    public bool limit180 = true;      // Limitar arco superior
+    public float minAngle = 0f;       // 0° = derecha
+    public float maxAngle = 180f;     // 180° = izquierda
 
-    // Llamado por el Input System para mover el mouse
-    public void OnAim(InputAction.CallbackContext context)
+
+    void Start()
     {
-        Vector2 mousePos = context.ReadValue<Vector2>();
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePos);
-        mousePosition.z = 0;
+        transform.localRotation = Quaternion.Euler(0f, 0f, 0f); // mirar a la derecha al inicio
     }
 
-    // Llamado al click de disparo
-    public void OnShoot(InputAction.CallbackContext context)
+
+    void Update()
     {
-        if (context.performed)
+        AimAtMouse();
+
+        // Disparo con click izquierdo
+        if (Input.GetMouseButtonDown(0))
         {
             Shoot();
         }
     }
 
-    void Update()
-    {
-        AimAtMouse();
-    }
-
     void AimAtMouse()
     {
-        if (cannonTransform == null) return;
-        Vector3 direction = (mousePosition - cannonTransform.position).normalized;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        cannonTransform.rotation = Quaternion.Euler(0, 0, angle);
+        Vector3 mouseScreen = Input.mousePosition;
+        mouseScreen.z = Mathf.Abs(Camera.main.transform.position.z);
+
+        Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(mouseScreen);
+        mouseWorld.z = 0f;
+
+        Vector2 dir = mouseWorld - transform.position;
+
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        // Limitar rotación solo a arco superior
+        if (dir.y < 0)
+        {
+            // Mouse debajo: apuntar horizontal según X
+            if (dir.x >= 0)
+                angle = 0f;   // derecha
+            else
+                angle = 180f; // izquierda
+        }
+
+        transform.localRotation = Quaternion.Euler(0f, 0f, angle);
     }
+
 
     void Shoot()
     {
         if (bulletPrefab == null || firePoint == null) return;
 
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
-            rb.linearVelocity = firePoint.right * bulletSpeed;
+            // Disparo recto hacia delante
+            Vector2 dir = (firePoint.position - transform.position).normalized;
+            rb.linearVelocity = dir * bulletSpeed;
         }
     }
 }
-
