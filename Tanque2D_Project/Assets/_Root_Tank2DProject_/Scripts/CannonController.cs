@@ -3,27 +3,17 @@
 public class CannonController : MonoBehaviour
 {
     [Header("Disparo")]
-    public Transform firePoint;       // Punta del cañón
-    public GameObject bulletPrefab;   // Prefab de la bala
+    public Transform firePoint;
+    public GameObject bulletPrefab;
     public float bulletSpeed = 15f;
 
     [Header("Rotación")]
-    public bool limit180 = true;      // Limitar arco superior
-    public float minAngle = 0f;       // 0° = derecha
-    public float maxAngle = 180f;     // 180° = izquierda
-
-
-    void Start()
-    {
-        transform.localRotation = Quaternion.Euler(0f, 0f, 0f); // mirar a la derecha al inicio
-    }
-
+    public float rotationSpeed = 5f; // velocidad de rotación del cañón
 
     void Update()
     {
         AimAtMouse();
 
-        // Disparo con click izquierdo
         if (Input.GetMouseButtonDown(0))
         {
             Shoot();
@@ -40,21 +30,33 @@ public class CannonController : MonoBehaviour
 
         Vector2 dir = mouseWorld - transform.position;
 
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        float targetAngle;
 
-        // Limitar rotación solo a arco superior
+        // Si el mouse está debajo del tanque
         if (dir.y < 0)
         {
-            // Mouse debajo: apuntar horizontal según X
-            if (dir.x >= 0)
-                angle = 0f;   // derecha
-            else
-                angle = 180f; // izquierda
+            targetAngle = dir.x >= 0 ? 0f : 180f;
+        }
+        else
+        {
+            // Mouse por encima → arco superior
+            targetAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+            // Convertir a 0-360 para LerpAngle
+            if (targetAngle < 0) targetAngle += 360f;
+
+            // Limitar arco superior 0-180
+            targetAngle = Mathf.Clamp(targetAngle, 0f, 180f);
         }
 
-        transform.localRotation = Quaternion.Euler(0f, 0f, angle);
-    }
+        // Rotación suave
+        float currentAngle = transform.localEulerAngles.z;
 
+        // Mathf.LerpAngle maneja correctamente el paso 0°↔360°
+        float newAngle = Mathf.LerpAngle(currentAngle, targetAngle, Time.deltaTime * rotationSpeed);
+
+        transform.localRotation = Quaternion.Euler(0f, 0f, newAngle);
+    }
 
     void Shoot()
     {
@@ -65,7 +67,6 @@ public class CannonController : MonoBehaviour
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
-            // Disparo recto hacia delante
             Vector2 dir = (firePoint.position - transform.position).normalized;
             rb.linearVelocity = dir * bulletSpeed;
         }
