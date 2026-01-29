@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 6f;
 
     [Header("Ground Check")]
-    public Transform groundCheckPoint;     // punto desde donde miramos hacia abajo
+    public Transform groundCheckPoint;
     public float groundCheckDistance = 0.2f;
     public LayerMask groundLayer;
 
@@ -35,12 +35,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded)
         {
-            // Movimiento solo si está en suelo
-            rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+            float targetX = transform.position.x + moveInput * moveSpeed * Time.fixedDeltaTime;
+            rb.MovePosition(new Vector2(targetX, rb.position.y));
         }
         else
         {
-            // En el aire no controlas (o control mínimo si quieres)
+            // En el aire no controlas horizontal
             rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
         }
     }
@@ -57,7 +57,6 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = hit.collider != null;
     }
 
-    // Debug visual en escena
     void OnDrawGizmosSelected()
     {
         if (groundCheckPoint == null) return;
@@ -69,4 +68,3 @@ public class PlayerMovement : MonoBehaviour
         );
     }
 }
-
