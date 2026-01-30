@@ -2,32 +2,19 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
-    private Vector2 direction;
     public float speed = 8f;
-    public int damage = 1;
+    public float lifeTime = 5f;
 
-    public void Init(Vector2 dir)
+    private Vector2 direction;
+
+    public void SetDirection(Vector2 dir)
     {
         direction = dir.normalized;
+        Destroy(gameObject, lifeTime);
     }
 
     void Update()
     {
-        transform.Translate(direction * speed * Time.deltaTime);
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        PlayerHealth player = other.GetComponent<PlayerHealth>();
-        if (player != null)
-        {
-            player.TakeDamage(damage);
-            gameObject.SetActive(false);
-        }
-    }
-
-    private void OnBecameInvisible()
-    {
-        gameObject.SetActive(false);
+        transform.Translate(direction * speed * Time.deltaTime, Space.World);
     }
 }
