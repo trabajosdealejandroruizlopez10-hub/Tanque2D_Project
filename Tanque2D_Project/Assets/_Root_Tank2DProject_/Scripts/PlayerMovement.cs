@@ -5,6 +5,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed = 6f;
+    public float airControlMultiplier = 0.5f; // Control en el aire (50% del normal)
 
     [Header("Ground Check")]
     public Transform groundCheckPoint;
@@ -33,16 +34,11 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isGrounded)
-        {
-            float targetX = transform.position.x + moveInput * moveSpeed * Time.fixedDeltaTime;
-            rb.MovePosition(new Vector2(targetX, rb.position.y));
-        }
-        else
-        {
-            // En el aire no controlas horizontal
-            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
-        }
+        // Determinar velocidad según si está en el suelo o en el aire
+        float currentSpeed = isGrounded ? moveSpeed : moveSpeed * airControlMultiplier;
+
+        float targetX = transform.position.x + moveInput * currentSpeed * Time.fixedDeltaTime;
+        rb.MovePosition(new Vector2(targetX, rb.position.y));
     }
 
     void CheckGround()
@@ -61,10 +57,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (groundCheckPoint == null) return;
 
-        Gizmos.color = Color.red;
+        Gizmos.color = isGrounded ? Color.green : Color.red;
         Gizmos.DrawLine(
             groundCheckPoint.position,
             groundCheckPoint.position + Vector3.down * groundCheckDistance
         );
     }
+
+    // Getter público para saber si está en el suelo (útil para animaciones)
+    public bool IsGrounded() => isGrounded;
 }

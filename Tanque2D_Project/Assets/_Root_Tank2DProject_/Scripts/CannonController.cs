@@ -7,18 +7,27 @@ public class CannonController : MonoBehaviour
     public Transform firePoint;
     public GameObject bulletPrefab;
     public float bulletSpeed = 15f;
-    public int poolSize = 10;        // cantidad de balas en memoria
-    public float fireRate = 0.5f;    // tiempo entre disparos
+    public int poolSize = 10;
+    public float fireRate = 0.5f;
 
     [Header("Rotación")]
-    public float rotationSpeed = 5f; // velocidad de rotación del cañón
+    public float rotationSpeed = 5f;
+
+    [Header("Visual Effects")]
+    public GameObject muzzleFlashPrefab; // Efecto de disparo
+    public float muzzleFlashDuration = 0.1f;
+
+    [Header("Screen Shake")]
+    public bool enableScreenShake = true;
+    public float shakeMagnitude = 0.1f;
+    public float shakeDuration = 0.1f;
 
     private List<BulletMove> bulletPool = new List<BulletMove>();
     private float nextFireTime = 0f;
 
     void Start()
     {
-        // Inicializamos pool
+        // Inicializar pool
         for (int i = 0; i < poolSize; i++)
         {
             GameObject b = Instantiate(bulletPrefab);
@@ -27,7 +36,6 @@ public class CannonController : MonoBehaviour
             bulletPool.Add(bm);
         }
 
-        // Cañón mirando a la derecha al inicio
         transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
     }
 
@@ -38,7 +46,7 @@ public class CannonController : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && Time.time >= nextFireTime)
         {
             ShootToMouse();
-            nextFireTime = Time.time + fireRate; // reiniciamos cooldown
+            nextFireTime = Time.time + fireRate;
         }
     }
 
@@ -56,18 +64,15 @@ public class CannonController : MonoBehaviour
 
         if (dir.y < 0)
         {
-            // Mouse debajo: apuntar horizontal según X
             targetAngle = dir.x >= 0 ? 0f : 180f;
         }
         else
         {
-            // Mouse arriba: arco superior
             targetAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             if (targetAngle < 0) targetAngle += 360f;
             targetAngle = Mathf.Clamp(targetAngle, 0f, 180f);
         }
 
-        // Rotación suave
         float currentAngle = transform.localEulerAngles.z;
         float newAngle = Mathf.LerpAngle(currentAngle, targetAngle, Time.deltaTime * rotationSpeed);
         transform.localRotation = Quaternion.Euler(0f, 0f, newAngle);
@@ -75,7 +80,6 @@ public class CannonController : MonoBehaviour
 
     void ShootToMouse()
     {
-        // Posición del mouse en mundo, limitada a la pantalla
         Vector3 mouseScreen = Input.mousePosition;
         mouseScreen.z = Mathf.Abs(Camera.main.transform.position.z);
         Vector3 targetPos = Camera.main.ScreenToWorldPoint(mouseScreen);
@@ -86,7 +90,7 @@ public class CannonController : MonoBehaviour
         targetPos.x = Mathf.Clamp(targetPos.x, minScreen.x, maxScreen.x);
         targetPos.y = Mathf.Clamp(targetPos.y, minScreen.y, maxScreen.y);
 
-        // Tomamos la primera bala inactiva del pool
+        // Obtener bala del pool
         foreach (BulletMove bm in bulletPool)
         {
             if (!bm.gameObject.activeInHierarchy)
@@ -96,6 +100,25 @@ public class CannonController : MonoBehaviour
                 bm.gameObject.SetActive(true);
                 break;
             }
+        }
+
+        // Reproducir sonido de disparo
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayPlayerShoot();
+        }
+
+        // Spawn muzzle flash
+        if (muzzleFlashPrefab != null)
+        {
+            GameObject flash = Instantiate(muzzleFlashPrefab, firePoint.position, firePoint.rotation);
+            Destroy(flash, muzzleFlashDuration);
+        }
+
+        // Screen shake
+        if (enableScreenShake && CameraShake.Instance != null)
+        {
+            CameraShake.Instance.Shake(shakeMagnitude, shakeDuration);
         }
     }
 }
