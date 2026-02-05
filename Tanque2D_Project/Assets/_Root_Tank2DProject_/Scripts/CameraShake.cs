@@ -7,7 +7,7 @@ public class CameraShake : MonoBehaviour
 
     [Header("Shake Settings")]
     public bool enableShake = true;
-
+    
     private Vector3 originalPosition;
     private bool isShaking = false;
 
@@ -29,7 +29,7 @@ public class CameraShake : MonoBehaviour
     public void Shake(float magnitude, float duration)
     {
         if (!enableShake) return;
-
+        
         if (!isShaking)
         {
             StartCoroutine(ShakeCoroutine(magnitude, duration));
@@ -40,7 +40,7 @@ public class CameraShake : MonoBehaviour
     {
         isShaking = true;
         originalPosition = transform.localPosition;
-
+        
         float elapsed = 0f;
 
         while (elapsed < duration)
@@ -58,13 +58,13 @@ public class CameraShake : MonoBehaviour
         isShaking = false;
     }
 
-    // Método para shake más intenso (por ejemplo al recibir daño)
+    // MÃ©todo para shake mÃ¡s intenso (por ejemplo al recibir daÃ±o)
     public void ShakeHeavy()
     {
         Shake(0.3f, 0.2f);
     }
 
-    // Método para shake suave (por ejemplo al disparar)
+    // MÃ©todo para shake suave (por ejemplo al disparar)
     public void ShakeLight()
     {
         Shake(0.05f, 0.1f);

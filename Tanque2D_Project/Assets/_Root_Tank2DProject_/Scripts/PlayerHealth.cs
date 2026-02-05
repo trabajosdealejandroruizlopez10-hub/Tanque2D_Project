@@ -13,7 +13,7 @@ public class PlayerHealth : MonoBehaviour
     public float hitFlashDuration = 0.1f;
 
     [Header("Invulnerability")]
-    public float invulnerabilityTime = 1f; // Tiempo de invulnerabilidad tras recibir daño
+    public float invulnerabilityTime = 1f; // Tiempo de invulnerabilidad tras recibir daÃ±o
     private bool isInvulnerable = false;
 
     // Eventos para que otros sistemas reaccionen
@@ -42,7 +42,7 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth -= damage;
         currentHealth = Mathf.Max(0, currentHealth);
-
+        
         Debug.Log("Player HP: " + currentHealth + "/" + maxHealth);
 
         // Notificar cambio de vida
@@ -67,7 +67,7 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth += amount;
         currentHealth = Mathf.Min(currentHealth, maxHealth);
-
+        
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
         Debug.Log("Player healed! HP: " + currentHealth + "/" + maxHealth);
     }
@@ -82,7 +82,7 @@ public class PlayerHealth : MonoBehaviour
     IEnumerator InvulnerabilityCoroutine()
     {
         isInvulnerable = true;
-
+        
         // Parpadeo durante invulnerabilidad
         float elapsed = 0f;
         while (elapsed < invulnerabilityTime)
@@ -91,7 +91,7 @@ public class PlayerHealth : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
             elapsed += 0.1f;
         }
-
+        
         spriteRenderer.enabled = true;
         isInvulnerable = false;
     }
@@ -99,19 +99,19 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
         if (isDead) return;
-
+        
         isDead = true;
         Debug.Log("PLAYER DEAD");
-
+        
         // Notificar muerte
         OnPlayerDeath?.Invoke();
-
+        
         // Desactivar controles
         GetComponent<PlayerMovement>().enabled = false;
         GetComponent<CannonController>().enabled = false;
     }
 
-    // Getters públicos
+    // Getters pÃºblicos
     public int GetCurrentHealth() => currentHealth;
     public int GetMaxHealth() => maxHealth;
     public bool IsDead() => isDead;

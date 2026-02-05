@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// Enemigo tipo AviÛn: Vuela en patrÛn sinusoidal, dispara ocasionalmente
+/// Enemigo tipo Avi√≥n: Vuela en patr√≥n sinusoidal, dispara ocasionalmente
 /// </summary>
 public class EnemyAirplane : MonoBehaviour
 {
@@ -9,7 +9,7 @@ public class EnemyAirplane : MonoBehaviour
     public float moveSpeed = 3f;
     public float amplitude = 2f; // Amplitud de la onda
     public float frequency = 1f; // Frecuencia de la onda
-    public bool moveLeft = true; // DirecciÛn de vuelo
+    public bool moveLeft = true; // Direcci√≥n de vuelo
 
     [Header("Shooting")]
     public Transform firePoint;
@@ -29,7 +29,7 @@ public class EnemyAirplane : MonoBehaviour
         startPosition = transform.position;
         nextFireTime = Time.time + Random.Range(0.5f, 2f); // Delay inicial random
 
-        // Buscar jugador si no est· asignado
+        // Buscar jugador si no est√° asignado
         if (player == null)
         {
             GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
@@ -60,7 +60,7 @@ public class EnemyAirplane : MonoBehaviour
             transform.position.z
         );
 
-        // Voltear sprite seg˙n direcciÛn
+        // Voltear sprite seg√∫n direcci√≥n
         Vector3 scale = transform.localScale;
         scale.x = moveLeft ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
         transform.localScale = scale;
@@ -71,7 +71,7 @@ public class EnemyAirplane : MonoBehaviour
         if (player == null || firePoint == null || bulletPrefab == null)
             return;
 
-        // Solo disparar si est· visible en c·mara
+        // Solo disparar si est√° visible en c√°mara
         if (!IsVisibleByCamera())
             return;
 
@@ -84,21 +84,22 @@ public class EnemyAirplane : MonoBehaviour
 
     void Shoot()
     {
-        // Calcular direcciÛn hacia el jugador
+        // Calcular direcci√≥n hacia el jugador
         Vector2 direction = (player.position - firePoint.position).normalized;
 
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
         EnemyBullet enemyBullet = bullet.GetComponent<EnemyBullet>();
-
+        
         if (enemyBullet != null)
         {
             enemyBullet.SetDirection(direction);
         }
 
         // Reproducir sonido
-        if (AudioManager.Instance != null)
+        AudioManager audioManager = FindFirstObjectByType<AudioManager>();
+        if (audioManager != null)
         {
-            AudioManager.Instance.PlayEnemyShoot();
+            audioManager.PlayEnemyShoot();
         }
     }
 
@@ -118,7 +119,7 @@ public class EnemyAirplane : MonoBehaviour
         if (Camera.main != null)
         {
             Vector3 viewportPos = Camera.main.WorldToViewportPoint(transform.position);
-
+            
             if (moveLeft && viewportPos.x < -0.5f)
             {
                 Destroy(gameObject);
@@ -132,7 +133,7 @@ public class EnemyAirplane : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        // Visualizar el patrÛn de vuelo
+        // Visualizar el patr√≥n de vuelo
         if (!Application.isPlaying)
             startPosition = transform.position;
 

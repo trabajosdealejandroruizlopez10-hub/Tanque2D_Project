@@ -34,9 +34,9 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Determinar velocidad según si está en el suelo o en el aire
+        // Determinar velocidad segÃºn si estÃ¡ en el suelo o en el aire
         float currentSpeed = isGrounded ? moveSpeed : moveSpeed * airControlMultiplier;
-
+        
         float targetX = transform.position.x + moveInput * currentSpeed * Time.fixedDeltaTime;
         rb.MovePosition(new Vector2(targetX, rb.position.y));
     }
@@ -64,6 +64,6 @@ public class PlayerMovement : MonoBehaviour
         );
     }
 
-    // Getter público para saber si está en el suelo (útil para animaciones)
+    // Getter pÃºblico para saber si estÃ¡ en el suelo (Ãºtil para animaciones)
     public bool IsGrounded() => isGrounded;
 }

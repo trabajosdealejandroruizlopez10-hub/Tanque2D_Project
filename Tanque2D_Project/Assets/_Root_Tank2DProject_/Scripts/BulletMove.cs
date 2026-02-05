@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class BulletMove : MonoBehaviour
 {
     [Header("Bullet Settings")]
     public int damage = 1;
-
+    
     private Vector3 targetPos;
     private float speed;
     private bool moving = false;

@@ -60,7 +60,7 @@ public class AudioManager : MonoBehaviour
         sfxSource.volume = sfxVolume;
     }
 
-    // MÚSICA
+    // MÃšSICA
     public void PlayMusic(AudioClip clip, bool fade = true)
     {
         if (clip == null) return;
@@ -153,7 +153,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // Métodos específicos para sonidos comunes
+    // MÃ©todos especÃ­ficos para sonidos comunes
     public void PlayPlayerShoot() => PlaySFX(playerShoot);
     public void PlayEnemyShoot() => PlaySFX(enemyShoot);
     public void PlayPlayerHit() => PlaySFX(playerHit);

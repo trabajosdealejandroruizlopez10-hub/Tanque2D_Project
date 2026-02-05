@@ -12,8 +12,8 @@ public class EnemyHealth : MonoBehaviour
     public float hitFlashDuration = 0.1f;
 
     [Header("Death Settings")]
-    public GameObject deathEffectPrefab; // Opcional: efecto de partículas al morir
-    public float deathDelay = 0.1f; // Pequeño delay antes de desaparecer
+    public GameObject deathEffectPrefab; // Opcional: efecto de partÃ­culas al morir
+    public float deathDelay = 0.1f; // PequeÃ±o delay antes de desaparecer
 
     private SpriteRenderer sr;
     private Color originalColor;
@@ -30,7 +30,7 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
-        Debug.Log(gameObject.name + " recibió daño. HP restante: " + currentHealth);
+        Debug.Log(gameObject.name + " recibiÃ³ daÃ±o. HP restante: " + currentHealth);
 
         // Feedback visual
         if (sr != null)
@@ -52,7 +52,7 @@ public class EnemyHealth : MonoBehaviour
     void Die()
     {
         Debug.Log(gameObject.name + " ha muerto.");
-
+        
         // Notificar al GameManager
         if (GameManager.Instance != null)
         {
@@ -65,7 +65,7 @@ public class EnemyHealth : MonoBehaviour
             Instantiate(deathEffectPrefab, transform.position, Quaternion.identity);
         }
 
-        // Opcional: reproducir sonido de muerte aquí
+        // Opcional: reproducir sonido de muerte aquÃ­
         // AudioManager.Instance.PlaySound("EnemyDeath");
 
         // Desactivar o destruir
@@ -77,7 +77,7 @@ public class EnemyHealth : MonoBehaviour
         // Desactivar componentes para que no siga actuando
         var patrol = GetComponent<EnemyPatrol>();
         if (patrol != null) patrol.enabled = false;
-
+        
         var shooter = GetComponent<EnemyShoot>();
         if (shooter != null) shooter.enabled = false;
 
@@ -88,13 +88,13 @@ public class EnemyHealth : MonoBehaviour
         // O si prefieres destruir: Destroy(gameObject);
     }
 
-    // Método público para resetear enemigo (útil para pooling)
+    // MÃ©todo pÃºblico para resetear enemigo (Ãºtil para pooling)
     public void ResetEnemy()
     {
         currentHealth = maxHealth;
         if (sr != null)
             sr.color = originalColor;
-
+        
         GetComponent<EnemyPatrol>().enabled = true;
         GetComponent<EnemyShoot>().enabled = true;
         gameObject.SetActive(true);

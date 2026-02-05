@@ -32,8 +32,8 @@ public class EnemyBullet : MonoBehaviour
             }
             Destroy(gameObject); // Destruir la bala al impactar
         }
-
-        // También destruir si golpea el suelo
+        
+        // TambiÃ©n destruir si golpea el suelo
         if (collision.CompareTag("Ground"))
         {
             Destroy(gameObject);

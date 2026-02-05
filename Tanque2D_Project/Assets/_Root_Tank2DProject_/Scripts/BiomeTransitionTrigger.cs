@@ -1,17 +1,17 @@
 using UnityEngine;
 
 /// <summary>
-/// Coloca este script en el collider del ·rbol gigante o la cueva.
-/// Cuando el jugador entre, iniciar· la transiciÛn al siguiente bioma.
+/// Coloca este script en el collider del √°rbol gigante o la cueva.
+/// Cuando el jugador entre, iniciar√° la transici√≥n al siguiente bioma.
 /// </summary>
 public class BiomeTransitionTrigger : MonoBehaviour
 {
     [Header("Transition Settings")]
-    [Tooltip("Õndice del bioma al que transicionar (0=Bosque, 1=Desierto, 2=Nieve)")]
+    [Tooltip("√çndice del bioma al que transicionar (0=Bosque, 1=Desierto, 2=Nieve)")]
     public int nextBiomeIndex = 1;
 
     [Header("Transition Type")]
-    public bool isEntrance = true; // true = entrada (·rbol/cueva), false = salida
+    public bool isEntrance = true; // true = entrada (√°rbol/cueva), false = salida
     public GameObject transitionVisuals; // Opcional: oscuridad, efectos visuales
 
     private bool hasTriggered = false;
@@ -35,11 +35,12 @@ public class BiomeTransitionTrigger : MonoBehaviour
             if (isEntrance)
             {
                 // Entrada: empezar a cargar el siguiente bioma
-                Debug.Log("Jugador entrÛ en zona de transiciÛn");
-
-                if (BiomeManager.Instance != null)
+                Debug.Log("Jugador entr√≥ en zona de transici√≥n");
+                
+                BiomeManager biomeManager = FindFirstObjectByType<BiomeManager>();
+                if (biomeManager != null)
                 {
-                    BiomeManager.Instance.TriggerBiomeTransition(nextBiomeIndex);
+                    biomeManager.TriggerBiomeTransition(nextBiomeIndex);
                 }
 
                 // Activar efectos visuales (oscurecer pantalla, etc.)

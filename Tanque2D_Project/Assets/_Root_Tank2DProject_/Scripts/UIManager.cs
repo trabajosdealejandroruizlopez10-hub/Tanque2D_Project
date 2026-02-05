@@ -4,6 +4,8 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance { get; private set; }
+
     [Header("Health UI")]
     public Slider healthSlider;
     public TextMeshProUGUI healthText;
@@ -24,12 +26,22 @@ public class UIManager : MonoBehaviour
 
     private CanvasGroup biomeTextCanvasGroup;
 
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
+
     void Start()
     {
         // Inicializar UI
         if (gameOverPanel != null)
             gameOverPanel.SetActive(false);
-
+            
         if (pausePanel != null)
             pausePanel.SetActive(false);
 
@@ -45,7 +57,7 @@ public class UIManager : MonoBehaviour
         }
 
         // Suscribirse al jugador para actualizar vida
-        PlayerHealth player = FindObjectOfType<PlayerHealth>();
+        PlayerHealth player = FindFirstObjectByType<PlayerHealth>();
         if (player != null)
         {
             player.OnHealthChanged.AddListener(UpdateHealth);
@@ -83,7 +95,7 @@ public class UIManager : MonoBehaviour
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(true);
-
+            
             if (finalScoreText != null && GameManager.Instance != null)
             {
                 finalScoreText.text = "Final Score: " + GameManager.Instance.currentScore;
@@ -134,7 +146,7 @@ public class UIManager : MonoBehaviour
         biomeTextCanvasGroup.alpha = 0f;
     }
 
-    // Métodos para botones
+    // MÃ©todos para botones
     public void OnRestartButton()
     {
         if (GameManager.Instance != null)

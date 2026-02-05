@@ -7,7 +7,7 @@ public class EnemySpawnData
 {
     public GameObject enemyPrefab;
     public int spawnWeight = 1; // Probabilidad relativa de spawn
-    public int minBiome = 0; // En qué bioma empieza a aparecer (0=Bosque, 1=Desierto, 2=Nieve)
+    public int minBiome = 0; // En quÃ© bioma empieza a aparecer (0=Bosque, 1=Desierto, 2=Nieve)
 }
 
 public class EnemySpawner : MonoBehaviour
@@ -16,13 +16,13 @@ public class EnemySpawner : MonoBehaviour
     public Transform player;
     public float spawnDistance = 15f; // Distancia del jugador donde spawnnean
     public float spawnInterval = 3f; // Tiempo entre spawns
-    public float spawnHeightMin = 2f; // Altura mínima de spawn
-    public float spawnHeightMax = 8f; // Altura máxima de spawn
+    public float spawnHeightMin = 2f; // Altura mÃ­nima de spawn
+    public float spawnHeightMax = 8f; // Altura mÃ¡xima de spawn
 
     [Header("Difficulty Scaling")]
     public bool enableDifficultyScaling = true;
-    public float difficultyIncreaseRate = 0.1f; // Cada cuántos segundos aumenta
-    public float minSpawnInterval = 0.5f; // Intervalo mínimo entre spawns
+    public float difficultyIncreaseRate = 0.1f; // Cada cuÃ¡ntos segundos aumenta
+    public float minSpawnInterval = 0.5f; // Intervalo mÃ­nimo entre spawns
     public int maxSimultaneousEnemies = 10;
 
     [Header("Enemy Types")]
@@ -62,7 +62,7 @@ public class EnemySpawner : MonoBehaviour
         if (Time.time >= nextSpawnTime && activeEnemyCount < maxSimultaneousEnemies)
         {
             SpawnEnemy();
-
+            
             // Calcular siguiente spawn basado en dificultad
             float adjustedInterval = spawnInterval / currentDifficulty;
             adjustedInterval = Mathf.Max(adjustedInterval, minSpawnInterval);
@@ -97,7 +97,7 @@ public class EnemySpawner : MonoBehaviour
             return;
         }
 
-        // Selección ponderada
+        // SelecciÃ³n ponderada
         int randomWeight = Random.Range(0, totalWeight);
         int currentWeight = 0;
         EnemySpawnData selectedEnemy = availableEnemies[0];
@@ -112,12 +112,12 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
-        // Calcular posición de spawn
+        // Calcular posiciÃ³n de spawn
         Vector3 spawnPos = CalculateSpawnPosition();
 
         // Instanciar enemigo
         GameObject enemy = Instantiate(selectedEnemy.enemyPrefab, spawnPos, Quaternion.identity);
-
+        
         // Asignar referencia al jugador si el enemigo la necesita
         AssignPlayerReference(enemy);
 
@@ -149,14 +149,14 @@ public class EnemySpawner : MonoBehaviour
             shooter.player = player;
     }
 
-    // Método público para cambiar el bioma actual
+    // MÃ©todo pÃºblico para cambiar el bioma actual
     public void SetCurrentBiome(int biomeIndex)
     {
         currentBiome = biomeIndex;
         Debug.Log("Spawner cambiado a bioma: " + biomeIndex);
     }
 
-    // Método para resetear dificultad (si se reinicia el nivel)
+    // MÃ©todo para resetear dificultad (si se reinicia el nivel)
     public void ResetDifficulty()
     {
         currentDifficulty = 1f;
@@ -171,7 +171,7 @@ public class EnemySpawner : MonoBehaviour
         Gizmos.color = Color.red;
         Vector3 spawnCenter = player.position + Vector3.right * spawnDistance;
         Vector3 spawnSize = new Vector3(2f, spawnHeightMax - spawnHeightMin, 1f);
-
+        
         Gizmos.DrawWireCube(spawnCenter + Vector3.up * ((spawnHeightMin + spawnHeightMax) / 2f), spawnSize);
     }
 }

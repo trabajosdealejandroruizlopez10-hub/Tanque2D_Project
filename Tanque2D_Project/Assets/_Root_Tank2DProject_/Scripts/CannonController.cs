@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 
 public class CannonController : MonoBehaviour
@@ -103,9 +103,10 @@ public class CannonController : MonoBehaviour
         }
 
         // Reproducir sonido de disparo
-        if (AudioManager.Instance != null)
+        AudioManager audioManager = FindFirstObjectByType<AudioManager>();
+        if (audioManager != null)
         {
-            AudioManager.Instance.PlayPlayerShoot();
+            audioManager.PlayPlayerShoot();
         }
 
         // Spawn muzzle flash
@@ -116,9 +117,10 @@ public class CannonController : MonoBehaviour
         }
 
         // Screen shake
-        if (enableScreenShake && CameraShake.Instance != null)
+        CameraShake cameraShake = FindFirstObjectByType<CameraShake>();
+        if (enableScreenShake && cameraShake != null)
         {
-            CameraShake.Instance.Shake(shakeMagnitude, shakeDuration);
+            cameraShake.Shake(shakeMagnitude, shakeDuration);
         }
     }
 }

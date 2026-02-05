@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
-
+        
         // No destruir al cambiar de escena (si quieres persistencia)
         // DontDestroyOnLoad(gameObject);
     }
@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         isGameOver = false;
-
+        
         // Suscribirse a eventos del jugador
         if (playerHealth != null)
         {
@@ -72,16 +72,16 @@ public class GameManager : MonoBehaviour
     void HandlePlayerDeath()
     {
         if (isGameOver) return;
-
+        
         isGameOver = true;
         Debug.Log("Game Over!");
-
+        
         // Mostrar pantalla de Game Over
         if (uiManager != null)
         {
             uiManager.ShowGameOver();
         }
-
+        
         // Opcional: detener el tiempo
         // Time.timeScale = 0f;
     }
@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
     {
         isPaused = !isPaused;
         Time.timeScale = isPaused ? 0f : 1f;
-
+        
         if (uiManager != null)
         {
             uiManager.ShowPauseMenu(isPaused);
@@ -107,10 +107,10 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Quitting game...");
         Application.Quit();
-
-#if UNITY_EDITOR
+        
+        #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-#endif
+        #endif
     }
 
     void OnDestroy()
@@ -120,5 +120,10 @@ public class GameManager : MonoBehaviour
         {
             playerHealth.OnPlayerDeath.RemoveListener(HandlePlayerDeath);
         }
+    }
+
+    public void LoadGameOver()
+    {
+        SceneManager.LoadScene("GameOver");
     }
 }

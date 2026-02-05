@@ -50,7 +50,7 @@ public class BiomeManager : MonoBehaviour
 
     void Update()
     {
-        // Lerp gradual del color de la cámara
+        // Lerp gradual del color de la cÃ¡mara
         if (mainCamera != null && biomes.Length > currentBiomeIndex)
         {
             Color targetColor = biomes[currentBiomeIndex].skyColor;
@@ -74,16 +74,18 @@ public class BiomeManager : MonoBehaviour
             currentBiomeObject = Instantiate(biome.biomePrefab, spawnPosition, Quaternion.identity);
         }
 
-        // Cambiar música
-        if (biome.biomeMusic != null && AudioManager.Instance != null)
+        // Cambiar mÃºsica
+        AudioManager audioManager = FindFirstObjectByType<AudioManager>();
+        if (biome.biomeMusic != null && audioManager != null)
         {
-            AudioManager.Instance.PlayMusic(biome.biomeMusic);
+            audioManager.PlayMusic(biome.biomeMusic);
         }
 
         // Actualizar UI
-        if (UIManager.Instance != null)
+        UIManager uiManager = FindFirstObjectByType<UIManager>();
+        if (uiManager != null)
         {
-            UIManager.Instance.ShowBiomeTransition(biome.biomeName);
+            uiManager.ShowBiomeTransition(biome.biomeName);
         }
 
         Debug.Log("Cargado bioma: " + biome.biomeName);
@@ -100,7 +102,7 @@ public class BiomeManager : MonoBehaviour
     {
         isTransitioning = true;
 
-        // Calcular posición donde spawnnear el siguiente bioma
+        // Calcular posiciÃ³n donde spawnnear el siguiente bioma
         Vector3 nextBiomePosition = currentBiomeObject.transform.position + biomes[currentBiomeIndex].spawnOffset;
 
         // Pre-cargar el siguiente bioma fuera de vista
@@ -108,13 +110,13 @@ public class BiomeManager : MonoBehaviour
         if (nextBiome.biomePrefab != null)
         {
             nextBiomeObject = Instantiate(nextBiome.biomePrefab, nextBiomePosition, Quaternion.identity);
-            nextBiomeObject.SetActive(true); // Ya está cargado pero fuera de vista
+            nextBiomeObject.SetActive(true); // Ya estÃ¡ cargado pero fuera de vista
         }
 
         Debug.Log("Siguiente bioma pre-cargado: " + nextBiome.biomeName);
 
-        // Esperar a que el jugador entre en la zona de transición
-        // (Esto lo controlarás con un trigger en el árbol/cueva)
+        // Esperar a que el jugador entre en la zona de transiciÃ³n
+        // (Esto lo controlarÃ¡s con un trigger en el Ã¡rbol/cueva)
         yield return new WaitForSeconds(transitionDuration);
 
         // Cambiar bioma activo
@@ -128,21 +130,23 @@ public class BiomeManager : MonoBehaviour
 
         currentBiomeObject = nextBiomeObject;
 
-        // Actualizar música y UI
-        if (nextBiome.biomeMusic != null && AudioManager.Instance != null)
+        // Actualizar mÃºsica y UI
+        AudioManager audioManager = FindFirstObjectByType<AudioManager>();
+        if (nextBiome.biomeMusic != null && audioManager != null)
         {
-            AudioManager.Instance.PlayMusic(nextBiome.biomeMusic);
+            audioManager.PlayMusic(nextBiome.biomeMusic);
         }
 
-        if (UIManager.Instance != null)
+        UIManager uiManager = FindFirstObjectByType<UIManager>();
+        if (uiManager != null)
         {
-            UIManager.Instance.ShowBiomeTransition(nextBiome.biomeName);
+            uiManager.ShowBiomeTransition(nextBiome.biomeName);
         }
 
         isTransitioning = false;
     }
 
-    // Método para llamar desde triggers de transición
+    // MÃ©todo para llamar desde triggers de transiciÃ³n
     public void TriggerBiomeTransition(int nextBiomeIndex)
     {
         if (!isTransitioning && nextBiomeIndex < biomes.Length)
