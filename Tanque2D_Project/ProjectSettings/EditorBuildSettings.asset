@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Root_Tank2DProject_/Scenes/SCN_Alejandro.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/_Root_Tank2DProject_/Scenes/GameOver.unity
+    guid: 2b9702595abea2841b3a6ab9b6336d4d
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: c210a612a6d00b4429ee76c1f0252e18, type: 3}
   m_UseUCBPForAssetBundles: 0
