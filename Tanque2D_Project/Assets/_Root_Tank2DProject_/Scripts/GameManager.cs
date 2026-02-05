@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -36,13 +37,21 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         isGameOver = false;
-        
+
+        // Inicializar el UI según el estado del juego
+        if (uiManager != null)
+        {
+            // Esta línea se asegura de que los paneles se configuren correctamente al inicio
+            uiManager.ShowPauseMenu(isPaused);
+        }
+
         // Suscribirse a eventos del jugador
         if (playerHealth != null)
         {
             playerHealth.OnPlayerDeath.AddListener(HandlePlayerDeath);
         }
     }
+
 
     void Update()
     {
@@ -96,12 +105,16 @@ public class GameManager : MonoBehaviour
     {
         isPaused = !isPaused;
         Time.timeScale = isPaused ? 0f : 1f;
-        
+
         if (uiManager != null)
-        {
             uiManager.ShowPauseMenu(isPaused);
-        }
+
+        // Bloquear input del player mientras está en pausa
+        PlayerInput playerInput = FindFirstObjectByType<PlayerInput>();
+        if (playerInput != null)
+            playerInput.enabled = !isPaused;
     }
+
 
     public void QuitGame()
     {

@@ -24,19 +24,34 @@ public class PlayerMovement : MonoBehaviour
     // Llamado por PlayerInput
     public void OnMove(InputAction.CallbackContext context)
     {
+        // Bloquear input si el juego está pausado o terminado
+        if (GameManager.Instance != null && (GameManager.Instance.isPaused || GameManager.Instance.isGameOver))
+        {
+            moveInput = 0f;
+            return;
+        }
+
         moveInput = context.ReadValue<float>();
     }
 
     void Update()
     {
+        // Bloquear lógica si el juego está pausado o terminado
+        if (GameManager.Instance != null && (GameManager.Instance.isPaused || GameManager.Instance.isGameOver))
+            return;
+
         CheckGround();
     }
 
     void FixedUpdate()
     {
+        // Bloquear movimiento si el juego está pausado o terminado
+        if (GameManager.Instance != null && (GameManager.Instance.isPaused || GameManager.Instance.isGameOver))
+            return;
+
         // Determinar velocidad según si está en el suelo o en el aire
         float currentSpeed = isGrounded ? moveSpeed : moveSpeed * airControlMultiplier;
-        
+
         float targetX = transform.position.x + moveInput * currentSpeed * Time.fixedDeltaTime;
         rb.MovePosition(new Vector2(targetX, rb.position.y));
     }
