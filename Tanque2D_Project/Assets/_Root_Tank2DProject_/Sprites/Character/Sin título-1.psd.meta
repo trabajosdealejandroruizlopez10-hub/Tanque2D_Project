@@ -1,22 +1,28 @@
 fileFormatVersion: 2
-guid: e3052bd9a6edf1c4aaca438df9a03730
+guid: 5988ec0ff5952de4db4641b86cbffc69
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7425671494422002039
-    second: Oasis_Arriba_0
+      213: -5350007238205115906
+    second: "Sin t\xEDtulo-1_0"
   - first:
-      213: 3532688934157084827
-    second: Oasis_Arriba_1
+      213: 6486329856321769463
+    second: "Sin t\xEDtulo-1_1"
   - first:
-      213: 1905545048061319254
-    second: Oasis_Arriba_2
+      213: -30594090272471809
+    second: "Sin t\xEDtulo-1_2"
   - first:
-      213: -2987750044992318781
-    second: Oasis_Arriba_3
+      213: -4614548299053550276
+    second: "Sin t\xEDtulo-1_3"
   - first:
-      213: 7561425909943071679
-    second: Oasis_Arriba_4
+      213: 7060532088859206924
+    second: "Sin t\xEDtulo-1_4"
+  - first:
+      213: -4277922231811646550
+    second: "Sin t\xEDtulo-1_5"
+  - first:
+      213: 9064313609711433100
+    second: "Sin t\xEDtulo-1_6"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -63,7 +69,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 250
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -108,17 +114,43 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Oasis_Arriba_0
+      name: "Sin t\xEDtulo-1_0"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 3
-        width: 594
-        height: 581
+        x: 95
+        y: 785
+        width: 347
+        height: 242
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,42 +159,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 77974cb91e84d0760800000000000000
-      internalID: 7425671494422002039
+      spriteID: ef1f30d23c4f0c5b0800000000000000
+      internalID: -5350007238205115906
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Oasis_Arriba_1
+      name: "Sin t\xEDtulo-1_1"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 271
-        width: 7
-        height: 146
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b98e26e5ed1a60130800000000000000
-      internalID: 3532688934157084827
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Oasis_Arriba_2
-      rect:
-        serializedVersion: 2
-        x: 587
-        y: 166
+        x: 1776
+        y: 977
         width: 6
-        height: 67
+        height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 658133d002bd17a10800000000000000
-      internalID: 1905545048061319254
+      spriteID: 7ffc11663a2140a50800000000000000
+      internalID: 6486329856321769463
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Oasis_Arriba_3
+      name: "Sin t\xEDtulo-1_2"
       rect:
         serializedVersion: 2
-        x: 7
-        y: 0
-        width: 67
-        height: 8
+        x: 1780
+        y: 976
+        width: 10
+        height: 14
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,20 +203,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3c25392f9216986d0800000000000000
-      internalID: -2987750044992318781
+      spriteID: ff4451546de439ff0800000000000000
+      internalID: -30594090272471809
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Oasis_Arriba_4
+      name: "Sin t\xEDtulo-1_3"
       rect:
         serializedVersion: 2
-        x: 581
-        y: 3
-        width: 12
-        height: 11
+        x: 610
+        y: 874
+        width: 243
+        height: 68
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,8 +225,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fb3779d8dc49fe860800000000000000
-      internalID: 7561425909943071679
+      spriteID: c35b70c55c4d5ffb0800000000000000
+      internalID: -4614548299053550276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Sin t\xEDtulo-1_4"
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 709
+        width: 831
+        height: 262
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0523b9c68c0cf160800000000000000
+      internalID: 7060532088859206924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Sin t\xEDtulo-1_5"
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 432
+        width: 690
+        height: 325
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aabde144564c1a4c0800000000000000
+      internalID: -4277922231811646550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Sin t\xEDtulo-1_6"
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 53
+        width: 831
+        height: 262
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c85b6970439eacd70800000000000000
+      internalID: 9064313609711433100
       vertices: []
       indices: 
       edges: []
@@ -235,11 +311,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Oasis_Arriba_0: 7425671494422002039
-      Oasis_Arriba_1: 3532688934157084827
-      Oasis_Arriba_2: 1905545048061319254
-      Oasis_Arriba_3: -2987750044992318781
-      Oasis_Arriba_4: 7561425909943071679
+      "Sin t\xEDtulo-1_0": -5350007238205115906
+      "Sin t\xEDtulo-1_1": 6486329856321769463
+      "Sin t\xEDtulo-1_2": -30594090272471809
+      "Sin t\xEDtulo-1_3": -4614548299053550276
+      "Sin t\xEDtulo-1_4": 7060532088859206924
+      "Sin t\xEDtulo-1_5": -4277922231811646550
+      "Sin t\xEDtulo-1_6": 9064313609711433100
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
