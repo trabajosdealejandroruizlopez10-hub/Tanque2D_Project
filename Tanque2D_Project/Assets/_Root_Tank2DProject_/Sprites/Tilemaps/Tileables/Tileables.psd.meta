@@ -1,19 +1,25 @@
 fileFormatVersion: 2
-guid: 057e1b55feaa22645ac568bc23ec8610
+guid: 3be4063267b022e4e8740fabd09a7cf3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7560843546022409275
-    second: Nieve_Abajo_0
+      213: 506972578118853402
+    second: Tileables_0
   - first:
-      213: 4730260357185383547
-    second: Nieve_Abajo_1
+      213: -8422330377902026877
+    second: Tileables_1
   - first:
-      213: -6837607521194081374
-    second: Nieve_Abajo_2
+      213: -2009572873655824788
+    second: Tileables_2
   - first:
-      213: -7343634079336665561
-    second: Nieve_Abajo_3
+      213: -7783488352825191210
+    second: Tileables_3
+  - first:
+      213: -6784186048483985030
+    second: Tileables_4
+  - first:
+      213: 4685685043612500713
+    second: Tileables_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,9 +55,9 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -60,7 +66,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 122.5
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -82,7 +88,7 @@ TextureImporter:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
-    resizeAlgorithm: 0
+    resizeAlgorithm: 1
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -105,93 +111,163 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Nieve_Abajo_0
+      name: Tileables_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 3
-        width: 592
-        height: 586
+        x: 389
+        y: 767
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5cb870d9adc721790800000000000000
-      internalID: -7560843546022409275
+      spriteID: a1363adafd0290700800000000000000
+      internalID: 506972578118853402
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Nieve_Abajo_1
+      name: Tileables_1
       rect:
         serializedVersion: 2
-        x: 523
-        y: 584
-        width: 60
-        height: 10
+        x: 1171
+        y: 845
+        width: 131
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b7ca52d9bb245a140800000000000000
-      internalID: 4730260357185383547
+      spriteID: 38f0b2c052fdd1b80800000000000000
+      internalID: -8422330377902026877
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Nieve_Abajo_2
+      name: Tileables_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 390
-        width: 8
-        height: 89
+        x: 895
+        y: 704
+        width: 131
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2a300b9cf20fb11a0800000000000000
-      internalID: -6837607521194081374
+      spriteID: c6ecb7b5e109c14e0800000000000000
+      internalID: -2009572873655824788
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Nieve_Abajo_3
+      name: Tileables_3
       rect:
         serializedVersion: 2
-        x: 7
-        y: 0
-        width: 57
-        height: 15
+        x: 574
+        y: 476
+        width: 130
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 72e6fac86bb261a90800000000000000
-      internalID: -7343634079336665561
+      spriteID: 6d4d670f49e7bf390800000000000000
+      internalID: -7783488352825191210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tileables_4
+      rect:
+        serializedVersion: 2
+        x: 1130
+        y: 476
+        width: 131
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7973f9abbab9d1a0800000000000000
+      internalID: -6784186048483985030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tileables_5
+      rect:
+        serializedVersion: 2
+        x: 1300
+        y: 245
+        width: 130
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e242e9a8b5e60140800000000000000
+      internalID: 4685685043612500713
       vertices: []
       indices: 
       edges: []
@@ -200,7 +276,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 231f1898a4c0b0444bc34732025b8a88
     internalID: 0
     vertices: []
     indices: 
@@ -210,10 +286,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Nieve_Abajo_0: -7560843546022409275
-      Nieve_Abajo_1: 4730260357185383547
-      Nieve_Abajo_2: -6837607521194081374
-      Nieve_Abajo_3: -7343634079336665561
+      Tileables_0: 506972578118853402
+      Tileables_1: -8422330377902026877
+      Tileables_2: -2009572873655824788
+      Tileables_3: -7783488352825191210
+      Tileables_4: -6784186048483985030
+      Tileables_5: 4685685043612500713
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
