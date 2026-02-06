@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9fc302368f8c8a94ba988af5a043085f
+guid: 0ab8e09ca1fe3734ba9fc0e58b368e74
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8089870774173950266
-    second: "Balas ca\xF1on_0"
+      213: 6033209100631932455
+    second: Balas_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "Balas ca\xF1on_0"
+      name: Balas_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2048
-        height: 602
+        width: 1734
+        height: 388
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a31e37d6b9ef44070800000000000000
-      internalID: 8089870774173950266
+      spriteID: 72ef1d236b34ab350800000000000000
+      internalID: 6033209100631932455
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "Balas ca\xF1on_0": 8089870774173950266
+      Balas_0: 6033209100631932455
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
